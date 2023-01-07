@@ -1,4 +1,4 @@
-# SurvivorKnowledge
+# Survivor Knowledge
 
 This is a gameplay mod for **The Long Dark** by Hinterland Studios
 
