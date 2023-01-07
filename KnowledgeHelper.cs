@@ -74,7 +74,10 @@ namespace SurvivorKnowledge
             }
 
         }
-
+        public static int getHarvestSkillLevel()
+        {
+            return GameManager.GetSkillCarcassHarvesting().GetCurrentTierNumber() + 1;
+        }
         public static int getRequiredSkillLevel(GearItem item)
         {   
             string name = item.name;
@@ -99,6 +102,63 @@ namespace SurvivorKnowledge
             if (name.StartsWith("GEAR_BirchbarkPrepared")) return settings.BarkLevel;
 
             return 0;
+        }
+
+        public static int getRequiredHarvestingSkillLevel(string carcass, string type)
+        {
+            if(type == "harvest")
+            {
+                if (carcass.Contains("Doe") || carcass.Contains("Deer"))
+                {
+                    return Settings.settings.DeerLevel;
+                }
+                else if (carcass.Contains("Wolf"))
+                {
+                    return Settings.settings.WolfLevel;
+                }
+                else if (carcass.Contains("Bear"))
+                {
+                    return Settings.settings.BearLevel;
+                }
+                else if (carcass.Contains("Moose"))
+                {
+                    return Settings.settings.MooseLevel;
+                }
+                else if (carcass.Contains("Rabbit"))
+                {
+                    return Settings.settings.RabbitLevel;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            
+            if(type == "quarter")
+            {
+                if (carcass.Contains("Doe") || carcass.Contains("Deer"))
+                {
+                    return Settings.settings.DeerQuarterLevel;
+                }
+                else if (carcass.Contains("Wolf"))
+                {
+                    return Settings.settings.WolfQuarterLevel;
+                }
+                else if (carcass.Contains("Bear"))
+                {
+                    return Settings.settings.BearQuarterLevel;
+                }
+                else if (carcass.Contains("Moose"))
+                {
+                    return Settings.settings.MooseQuarterLevel;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+
+            return 1;
         }
     }
 }

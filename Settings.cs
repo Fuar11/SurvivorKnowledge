@@ -24,6 +24,8 @@ namespace SurvivorKnowledge
         [Choice("Disabled", "Enabled")]
         public Active active = Active.Enabled;
 
+        [Section("Crafting")]
+
         [Name("Level required for crafting the survival bow")]
         [Description("Archery experience level required for crafting the survival bow.")]
         [Slider(1, 5)]
@@ -69,6 +71,54 @@ namespace SurvivorKnowledge
         [Slider(1, 5)]
         public int OMBLevel = 3;
 
+        [Section("Harvesting")]
+
+        [Name("Level required for harvesting rabbits")]
+        [Description("Carcass harvesting experience level required for harvesting rabbit hide & guts.")]
+        [Slider(1, 5)]
+        public int RabbitLevel = 2;
+
+        [Name("Level required for harvesting wolves")]
+        [Description("Carcass harvesting experience level required for harvesting wolf hide & guts.")]
+        [Slider(1, 5)]
+        public int WolfLevel = 3;
+
+        [Name("Level required for harvesting deer")]
+        [Description("Carcass harvesting experience level required for harvesting deer hide & guts.")]
+        [Slider(1, 5)]
+        public int DeerLevel = 3;
+
+        [Name("Level required for harvesting bears")]
+        [Description("Carcass harvesting experience level required for harvesting bear hide & guts.")]
+        [Slider(1, 5)]
+        public int BearLevel = 4;
+
+        [Name("Level required for harvesting moose")]
+        [Description("Carcass harvesting experience level required for harvesting moose hide & guts.")]
+        [Slider(1, 5)]
+        public int MooseLevel = 5;
+
+        [Section("Quartering")]
+
+        [Name("Level required for quartering wolves")]
+        [Description("Carcass harvesting experience level required for quarting wolves")]
+        [Slider(1, 5)]
+        public int WolfQuarterLevel = 3;
+
+        [Name("Level required for quartering deer")]
+        [Description("Carcass harvesting experience level required for quartering deer")]
+        [Slider(1, 5)]
+        public int DeerQuarterLevel = 4;
+
+        [Name("Level required for quartering bears")]
+        [Description("Carcass harvesting experience level required for quartering bears")]
+        [Slider(1, 5)]
+        public int BearQuarterLevel = 4;
+
+        [Name("Level required for quartering moose")]
+        [Description("Carcass harvesting experience level required for quartering moose")]
+        [Slider(1, 5)]
+        public int MooseQuarterLevel = 5;
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
             if (field.Name == nameof(active))
@@ -97,6 +147,24 @@ namespace SurvivorKnowledge
             SetFieldVisible(nameof(TeasLevel), Settings.settings.active != Active.Disabled);
 
             SetFieldVisible(nameof(OMBLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(RabbitLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(WolfLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(DeerLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(BearLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(MooseLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(WolfQuarterLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(DeerQuarterLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(BearQuarterLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(MooseQuarterLevel), Settings.settings.active != Active.Disabled);
 
         }
 

@@ -22,6 +22,7 @@ namespace SurvivorKnowledge
 
             static void Postfix(ref bool __result, BlueprintData __instance)
             {
+                if (Settings.settings.active == Active.Disabled) return;
 
                 if (__result == false) return;
 
@@ -46,6 +47,8 @@ namespace SurvivorKnowledge
 
             private static void Postfix(Panel_Crafting __instance)
             {
+
+                if (Settings.settings.active == Active.Disabled) return;
 
                 __instance.m_SelectedDescription.color = WhiteColor;
                 var bpi = __instance.m_SelectedBPI;
@@ -78,6 +81,67 @@ namespace SurvivorKnowledge
 
             }
 
+        }
+
+        [HarmonyPatch(typeof(Panel_BodyHarvest), nameof(Panel_BodyHarvest.StartHarvest))]
+
+        public class PanelBodyHarvest_StartHarvest
+        {
+
+            static bool Prefix(Panel_BodyHarvest __instance)
+            {
+                if (Settings.settings.active == Active.Disabled) return true;
+
+                var skillLevel = KnowledgeHelper.getHarvestSkillLevel();
+                var skillLevelRequired = KnowledgeHelper.getRequiredHarvestingSkillLevel(__instance.m_BodyHarvest.m_LocalizedDisplayName.Text(), "harvest");
+
+                var errorMessage = "Carcass Harvesting level " + skillLevelRequired + " required to harvest.";
+
+                if((__instance.m_MenuItem_Hide.m_HarvestAmount > 0 || __instance.m_MenuItem_Gut.m_HarvestAmount > 0) || (__instance.m_MenuItem_Hide.m_HarvestAmount > 0 && __instance.m_MenuItem_Gut.m_HarvestAmount > 0))
+                {
+                    if(skillLevel < skillLevelRequired)
+                    {
+                        __instance.DisplayErrorMessage(errorMessage);
+                        GameAudioManager.PlayGUIError();
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(Panel_BodyHarvest), nameof(Panel_BodyHarvest.StartQuarter))]
+
+        public class PanelBodyHarvest_StartQuarter
+        {
+
+            static bool Prefix(Panel_BodyHarvest __instance)
+            {
+                if (Settings.settings.active == Active.Disabled) return true;
+
+                var skillLevel = KnowledgeHelper.getHarvestSkillLevel();
+                var skillLevelRequired = KnowledgeHelper.getRequiredHarvestingSkillLevel(__instance.m_BodyHarvest.m_LocalizedDisplayName.Text(), "quarter");
+
+                var errorMessage = "Carcass Harvesting level " + skillLevelRequired + " required to quarter.";
+
+                    if (skillLevel < skillLevelRequired)
+                    {
+                        __instance.DisplayErrorMessage(errorMessage);
+                        GameAudioManager.PlayGUIError();
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+            }
         }
 
     }
