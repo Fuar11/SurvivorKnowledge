@@ -15,18 +15,18 @@ namespace SurvivorKnowledge
     internal class Patches
     {
 
-        [HarmonyPatch(typeof(BlueprintData), nameof(BlueprintData.CanCraftBlueprint))]
+        [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.CanCraftSelectedBlueprint))]
 
-        class BPD_CanCraftBlueprint
+        class PC_CanCraftBlueprint
         {
 
-            static void Postfix(ref bool __result, BlueprintData __instance)
+            static void Postfix(ref bool __result, Panel_Crafting __instance)
             {
                 if (Settings.settings.active == Active.Disabled) return;
 
                 if (__result == false) return;
 
-                GearItem item = __instance.m_CraftedResult;
+                GearItem item = __instance.m_SelectedBPI.m_CraftedResult;
 
                 var skillLevel = KnowledgeHelper.getCurrentSkillLevel(item);
                 var requiredSkillLevel = KnowledgeHelper.getRequiredSkillLevel(item);

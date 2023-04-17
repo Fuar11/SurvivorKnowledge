@@ -36,6 +36,11 @@ namespace SurvivorKnowledge
         [Slider(1, 5)]
         public int ArrowLevel = 2;
 
+        [Name("Level required for crafting fire-hardened arrows")]
+        [Description("Archery experience level required for crafting fire-hardened arrows.")]
+        [Slider(1, 5)]
+        public int FireArrowLevel = 1;
+
         [Name("Level required for forging arrowheads")]
         [Description("Archery experience level required for forging arrowheads.")]
         [Slider(1, 5)]
@@ -57,12 +62,12 @@ namespace SurvivorKnowledge
         public int GPLevel = 2;
 
         [Name("Level required for preparing birch bark")]
-        [Description("Firestarting experience level required for crafting prepared birch bark.")]
+        [Description("Cooking experience level required for crafting prepared birch bark.")]
         [Slider(1, 5)]
         public int BarkLevel = 3;
 
         [Name("Level required for preparing rosehips and mushrooms")]
-        [Description("Firestarting experience level required for crafting prepared rosehips and reishi mushrooms for cooking.")]
+        [Description("Cooking experience level required for crafting prepared rosehips and reishi mushrooms for cooking.")]
         [Slider(1, 5)]
         public int TeasLevel = 2;
 
@@ -165,6 +170,8 @@ namespace SurvivorKnowledge
             SetFieldVisible(nameof(BearQuarterLevel), Settings.settings.active != Active.Disabled);
 
             SetFieldVisible(nameof(MooseQuarterLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(FireArrowLevel), Settings.settings.active != Active.Disabled);
 
         }
 

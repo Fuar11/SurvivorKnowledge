@@ -1,5 +1,6 @@
 ﻿using Il2Cpp;
 using Il2CppTLD.Gear;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +40,13 @@ namespace SurvivorKnowledge
                 case "GEAR_OldMansBeardDressing":
                     return "Survival";
                 case "GEAR_RosehipsPrepared":
-                    return "Survival";
+                    return "Cooking";
                 case "GEAR_ReishiPrepared":
-                    return "Survival";
+                    return "Cooking";
                 case "GEAR_BirchbarkPrepared":
-                    return "Survival";
+                    return "Cooking";
+                case "GEAR_ArrowHardened":
+                    return "Archery";
                 default:
                     return "Default";
             }
@@ -67,6 +70,10 @@ namespace SurvivorKnowledge
             else if (skill == "Survival")
             {
                 return GameManager.GetSkillFireStarting().GetCurrentTierNumber() + 1;
+            }
+            else if (skill == "Cooking")
+            {
+                return GameManager.GetSkillCooking().GetCurrentTierNumber() + 1;
             }
             else
             {
@@ -101,9 +108,10 @@ namespace SurvivorKnowledge
 
             if (name.StartsWith("GEAR_BirchbarkPrepared")) return settings.BarkLevel;
 
+            if (name.StartsWith("GEAR_ArrowHardened")) return settings.FireArrowLevel;
+
             return 0;
         }
-
         public static int getRequiredHarvestingSkillLevel(string carcass, string type)
         {
             if(type == "harvest")
