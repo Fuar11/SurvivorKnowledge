@@ -92,6 +92,8 @@ namespace SurvivorKnowledge
 
             if (name.StartsWith("GEAR_Bow")) return settings.BowLevel;
 
+            if (name.StartsWith("GEAR_ArrowHardened")) return settings.FireArrowLevel;
+
             if (name.StartsWith("GEAR_Arrow") || name.StartsWith("GEAR_ArrowShaft")) return settings.ArrowLevel;
 
             if (name.StartsWith("GEAR_ArrowHead")) return settings.ArrowheadLevel;
