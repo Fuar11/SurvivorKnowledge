@@ -12,14 +12,23 @@ namespace SurvivorKnowledge
     internal class KnowledgeHelper
     {
 
-        /*public static bool IsClothing(GearItem gearItem)
-        {
-            if (gearItem == null) return false;
-            return gearItem.IsGearType(GearType.Clothing) || gearItem.name == "GEAR_BearSkinBedRoll";
-        } */
-
         public static string getSkillByItem(GearItem item)
         {
+
+            if (item.name.StartsWith("GEAR_Rabbit"))
+                return "Mending";
+
+            if (item.name.StartsWith("GEAR_Deer"))
+                return "Mending";
+
+            if (item.name.StartsWith("GEAR_Moose"))
+                return "Mending";
+
+            if (item.name.StartsWith("GEAR_Wolf"))
+                return "Mending";
+
+            if (item.name.StartsWith("GEAR_Bear"))
+                return "Mending";
 
             switch (item.name)
             {
@@ -52,7 +61,6 @@ namespace SurvivorKnowledge
             }
 
         }
-
         public static int getCurrentSkillLevel(GearItem item)
         {
             string skill = getSkillByItem(item);
@@ -75,16 +83,17 @@ namespace SurvivorKnowledge
             {
                 return GameManager.GetSkillCooking().GetCurrentTierNumber() + 1;
             }
+            else if(skill == "Mending")
+            {
+                return GameManager.GetSkillClothingRepair().GetCurrentTierNumber() + 1;
+            }
             else
             {
                 return 1;
             }
 
         }
-        public static int getHarvestSkillLevel()
-        {
-            return GameManager.GetSkillCarcassHarvesting().GetCurrentTierNumber() + 1;
-        }
+      
         public static int getRequiredSkillLevel(GearItem item)
         {   
             string name = item.name;
@@ -112,7 +121,26 @@ namespace SurvivorKnowledge
 
             if (name.StartsWith("GEAR_ArrowHardened")) return settings.FireArrowLevel;
 
+            if (name.StartsWith("GEAR_Rabbit"))
+                return settings.RabbitCraftLevel;
+
+            if (name.StartsWith("GEAR_Deer"))
+                return settings.DeerCraftLevel;
+
+            if (name.StartsWith("GEAR_Moose"))
+                return settings.MooseCraftLevel;
+
+            if (name.StartsWith("GEAR_Wolf"))
+                return settings.WolfCraftLevel;
+
+            if (name.StartsWith("GEAR_Bear"))
+                return settings.BearCraftLevel;
+
             return 0;
+        }
+        public static int getHarvestSkillLevel()
+        {
+            return GameManager.GetSkillCarcassHarvesting().GetCurrentTierNumber() + 1;
         }
         public static int getRequiredHarvestingSkillLevel(string carcass, string type)
         {
@@ -170,5 +198,62 @@ namespace SurvivorKnowledge
 
             return 1;
         }
+
+
+        //MENDING METHODS
+       
+        public static bool IsBandage(GearItem gearItem)
+        {
+            return IsBandage(gearItem.name);
+        }
+
+        public static bool IsBandage(string itemName)
+        {
+            return itemName == "GEAR_HeavyBandage";
+        }
+
+        public static bool IsImprovisedClothing(string itemName)
+        {
+            return itemName == "GEAR_ImprovisedHat" || itemName == "GEAR_ImprovisedMittens";
+        }
+
+        public static int GetXpForCrafting(string itemName)
+        {
+            var settings = Settings.settings;
+            if (IsBandage(itemName) && settings.CraftingBandagesGivesXP)
+            {
+                if (Utils.RollChance(33f))
+                {
+                    return 1;
+                }
+                return 0;
+            }
+
+            if (IsImprovisedClothing(itemName))
+                return settings.ImprovisedXp;
+
+            if (itemName.StartsWith("GEAR_Rabbit"))
+                return settings.RabbitXp;
+
+            if (itemName.StartsWith("GEAR_Deer"))
+                return settings.DeerXp;
+
+            if (itemName.StartsWith("GEAR_Moose"))
+                return settings.MooseXp;
+
+            if (itemName.StartsWith("GEAR_Wolf"))
+                return settings.WolfXp;
+
+            if (itemName.StartsWith("GEAR_Bear"))
+                return settings.BearXp;
+
+            return 0;
+        }
+
+        public static void AddMendingXP(int xp)
+        {
+            GameManager.GetSkillsManager().IncrementPointsAndNotify(SkillType.ClothingRepair, xp, SkillsManager.PointAssignmentMode.AssignOnlyInSandbox);
+        }
+
     }
 }
