@@ -151,7 +151,6 @@ namespace SurvivorKnowledge
         {
             public static void Prefix(string itemName)
             {
-                Implementation.Log("Crafted " + itemName);
                 var xp = KnowledgeHelper.GetXpForCrafting(itemName);
                 if (xp > 0)
                 {
