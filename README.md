@@ -10,16 +10,17 @@ It aims to simulate survivor knowledge by putting restraints on a couple of game
   - Bullets and cartridges
   - Gunpowder
   - Natural healing items
+  - Animal hide clothing items
   - Etc
   
 * Carcass Harvesting and Quartering now tied to Carcass Harvesting skill. Varies depending on the animal.
+* Crafting cloth items grants Mending XP
 * Values modifiable via Mod Settings menu
 * More to come in the future!
 
 ## Planned Features
 
 * Harvesting plants will be tied to a skill
-* Repairing high tier clothing items will be tied to the mending skill
 
 ## Installation
 
@@ -30,10 +31,6 @@ It aims to simulate survivor knowledge by putting restraints on a couple of game
 - [ModSettings](https://github.com/zeobviouslyfakeacc/ModSettings/releases/latest)
 
 * Download the latest release and drop in your mods folder.
-
-## Recommended Mods
-
-BetterMendingXP is recommended for similar mechanics surrounding the crafting of animal skin clothing and equipment.
 
 ## Special Thanks
 Thank you to [ds5678](https://github.com/ds5678) for the tools needed to make this mod possible as well as BetterMendingXP for the inspiration.
