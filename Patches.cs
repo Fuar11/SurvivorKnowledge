@@ -26,7 +26,10 @@ namespace SurvivorKnowledge
 
                 if (__result == false) return;
 
-                GearItem item = __instance.m_SelectedBPI.m_CraftedResult;
+                GearItem item = __instance.SelectedBPI.m_CraftedResult;
+
+                //check for bow drill (modded)
+                if (item.name.ToLowerInvariant().Contains("drill")) return;
 
                 var skillLevel = KnowledgeHelper.getCurrentSkillLevel(item);
                 var requiredSkillLevel = KnowledgeHelper.getRequiredSkillLevel(item);
@@ -51,7 +54,7 @@ namespace SurvivorKnowledge
                 if (Settings.settings.active == Active.Disabled) return;
 
                 __instance.m_SelectedDescription.color = WhiteColor;
-                var bpi = __instance.m_SelectedBPI;
+                var bpi = __instance.SelectedBPI;
                 if (!bpi)
                 {
                     return;
@@ -62,7 +65,7 @@ namespace SurvivorKnowledge
                 }
 
 
-                GearItem item = __instance.m_SelectedBPI.m_CraftedResult;
+                GearItem item = __instance.SelectedBPI.m_CraftedResult;
 
                 var skillLevel = KnowledgeHelper.getCurrentSkillLevel(item);
                 var requiredSkillLevel = KnowledgeHelper.getRequiredSkillLevel(item);

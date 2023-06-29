@@ -46,6 +46,21 @@ namespace SurvivorKnowledge
         [Slider(1, 5)]
         public int ArrowheadLevel = 3;
 
+        [Name("Level required for crafting fishing gear")]
+        [Description("Archery experience level required for crafting fishing tackles, simple lures and line.")]
+        [Slider(1, 5)]
+        public int SimpleFishingLevel = 1;
+
+        [Name("Level required for crafting fishing lures")]
+        [Description("Archery experience level required for crafting complex fishing lures")]
+        [Slider(1, 5)]
+        public int AdvancedFishingLevel = 2;
+
+        [Name("Level required for crafting fishing tipups")]
+        [Description("Archery experience level required for crafting fishing tipups")]
+        [Slider(1, 5)]
+        public int TipUpLevel = 3;
+
         [Name("Level required for forging bullets")]
         [Description("Gunsmithing experience level required for forging bullets out of scrap lead.")]
         [Slider(1, 5)]
@@ -205,6 +220,12 @@ namespace SurvivorKnowledge
             SetFieldVisible(nameof(BulletLevel), Settings.settings.active != Active.Disabled);
 
             SetFieldVisible(nameof(RoundLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(SimpleFishingLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(AdvancedFishingLevel), Settings.settings.active != Active.Disabled);
+
+            SetFieldVisible(nameof(TipUpLevel), Settings.settings.active != Active.Disabled);
 
             SetFieldVisible(nameof(GPLevel), Settings.settings.active != Active.Disabled);
 

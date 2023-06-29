@@ -30,6 +30,8 @@ namespace SurvivorKnowledge
             if (item.name.StartsWith("GEAR_Bear"))
                 return "Mending";
 
+            if (item.name.ToLowerInvariant().Contains("lure")) return "Fishing";
+
             switch (item.name)
             {
                 case "GEAR_Bow":
@@ -87,6 +89,10 @@ namespace SurvivorKnowledge
             {
                 return GameManager.GetSkillClothingRepair().GetCurrentTierNumber() + 1;
             }
+            else if (skill == "Fishing")
+            {
+                return GameManager.GetSkillIceFishing().GetCurrentTierNumber() + 1;
+            }
             else
             {
                 return 1;
@@ -135,6 +141,13 @@ namespace SurvivorKnowledge
 
             if (name.StartsWith("GEAR_Bear"))
                 return settings.BearCraftLevel;
+
+            if (name.StartsWith("GEAR_HookAndLine")) return settings.SimpleFishingLevel;
+
+            if (name.StartsWith("GEAR_FishingLure")) return settings.AdvancedFishingLevel;
+
+            if (name.StartsWith("GEAR_TipUp")) return settings.TipUpLevel;
+
 
             return 0;
         }
@@ -198,7 +211,6 @@ namespace SurvivorKnowledge
 
             return 1;
         }
-
 
         //MENDING METHODS
        
