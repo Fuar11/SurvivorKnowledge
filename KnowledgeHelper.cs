@@ -58,6 +58,12 @@ namespace SurvivorKnowledge
                     return "Cooking";
                 case "GEAR_ArrowHardened":
                     return "Archery";
+                case "GEAR_HookAndLine":
+                    return "Fishing";
+                case "GEAR_FishingLure":
+                    return "Fishing";
+                case "GEAR_TipUp":
+                    return "Fishing";
                 default:
                     return "Default";
             }
