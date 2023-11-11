@@ -235,7 +235,7 @@ namespace SurvivorKnowledge
 
             SetFieldVisible(nameof(OMBLevel), Settings.settings.active != Active.Disabled);
 
-            SetFieldVisible(nameof(RabbitLevel), Settings.settings.active != Active.Disabled);
+            SetFieldVisible(nameof(SmallGameLevel), Settings.settings.active != Active.Disabled);
 
             SetFieldVisible(nameof(WolfLevel), Settings.settings.active != Active.Disabled);
 
