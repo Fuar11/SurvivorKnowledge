@@ -181,9 +181,9 @@ namespace SurvivorKnowledge
                 {
                     return Settings.settings.MooseLevel;
                 }
-                else if (carcass.Contains("Rabbit"))
+                else if (carcass.Contains("Rabbit") || carcass.Contains("Ptarmigan"))
                 {
-                    return Settings.settings.RabbitLevel;
+                    return Settings.settings.SmallGameLevel;
                 }
                 else
                 {

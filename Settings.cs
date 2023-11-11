@@ -47,17 +47,17 @@ namespace SurvivorKnowledge
         public int ArrowheadLevel = 3;
 
         [Name("Level required for crafting fishing gear")]
-        [Description("Archery experience level required for crafting fishing tackles, simple lures and line.")]
+        [Description("Fishing experience level required for crafting fishing tackles, simple lures and line.")]
         [Slider(1, 5)]
         public int SimpleFishingLevel = 1;
 
         [Name("Level required for crafting fishing lures")]
-        [Description("Archery experience level required for crafting complex fishing lures")]
+        [Description("Fishing experience level required for crafting complex fishing lures")]
         [Slider(1, 5)]
         public int AdvancedFishingLevel = 2;
 
         [Name("Level required for crafting fishing tipups")]
-        [Description("Archery experience level required for crafting fishing tipups")]
+        [Description("Fishing experience level required for crafting fishing tipups")]
         [Slider(1, 5)]
         public int TipUpLevel = 3;
 
@@ -154,10 +154,10 @@ namespace SurvivorKnowledge
 
         [Section("Harvesting")]
 
-        [Name("Level required for harvesting rabbits")]
-        [Description("Carcass harvesting experience level required for harvesting rabbit hide & guts.")]
+        [Name("Level required for harvesting small game")]
+        [Description("Carcass harvesting experience level required for harvesting rabbit hide & guts & ptarmigan down.")]
         [Slider(1, 5)]
-        public int RabbitLevel = 2;
+        public int SmallGameLevel = 2;
 
         [Name("Level required for harvesting wolves")]
         [Description("Carcass harvesting experience level required for harvesting wolf hide & guts.")]
