@@ -93,6 +93,7 @@ namespace SurvivorKnowledge
 
             static bool Prefix(Panel_BodyHarvest __instance)
             {
+
                 if (Settings.settings.active == Active.Disabled) return true;
 
                 var skillLevel = KnowledgeHelper.getHarvestSkillLevel();
@@ -100,9 +101,11 @@ namespace SurvivorKnowledge
 
                 var errorMessage = "Carcass Harvesting level " + skillLevelRequired + " required to harvest.";
 
-                if((__instance.m_MenuItem_Hide.m_HarvestAmount > 0 || __instance.m_MenuItem_Gut.m_HarvestAmount > 0) || (__instance.m_MenuItem_Hide.m_HarvestAmount > 0 && __instance.m_MenuItem_Gut.m_HarvestAmount > 0))
+
+                if ((__instance.m_MenuItem_Hide.HarvestUnits > 0 || __instance.m_MenuItem_Gut.HarvestUnits > 0) || (__instance.m_MenuItem_Hide.HarvestUnits > 0 && __instance.m_MenuItem_Gut.HarvestUnits > 0))
                 {
-                    if(skillLevel < skillLevelRequired)
+
+                    if (skillLevel < skillLevelRequired)
                     {
                         __instance.DisplayErrorMessage(errorMessage);
                         GameAudioManager.PlayGUIError();
@@ -127,6 +130,7 @@ namespace SurvivorKnowledge
 
             static bool Prefix(Panel_BodyHarvest __instance)
             {
+
                 if (Settings.settings.active == Active.Disabled) return true;
 
                 var skillLevel = KnowledgeHelper.getHarvestSkillLevel();
@@ -136,7 +140,7 @@ namespace SurvivorKnowledge
 
                     if (skillLevel < skillLevelRequired)
                     {
-                        __instance.DisplayErrorMessage(errorMessage);
+                    __instance.DisplayErrorMessage(errorMessage);
                         GameAudioManager.PlayGUIError();
                         return false;
                     }

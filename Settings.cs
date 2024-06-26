@@ -122,6 +122,11 @@ namespace SurvivorKnowledge
         [Slider(1, 5)]
         public int MooseCraftLevel = 4;
 
+        [Name("Level required for crafting Cougar Hide items")]
+        [Description("Mending experience level required for crafting Cougar Hide items")]
+        [Slider(1, 5)]
+        public int CougarCraftLevel = 4;
+
         [Name("XP for crafting Improvised Clothing items")]
         [Description("Mending experience points for crafting Improvised Clothing items")]
         [Slider(0, 10)]
@@ -179,6 +184,11 @@ namespace SurvivorKnowledge
         [Slider(1, 5)]
         public int MooseLevel = 5;
 
+        [Name("Level required for harvesting cougars")]
+        [Description("Carcass harvesting experience level required for harvesting cougar hide & guts.")]
+        [Slider(1, 5)]
+        public int CougarLevel = 4;
+
         [Section("Quartering")]
 
         [Name("Level required for quartering wolves")]
@@ -200,6 +210,11 @@ namespace SurvivorKnowledge
         [Description("Carcass harvesting experience level required for quartering moose")]
         [Slider(1, 5)]
         public int MooseQuarterLevel = 5;
+
+        [Name("Level required for quartering cougars")]
+        [Description("Carcass harvesting experience level required for quartering cougars")]
+        [Slider(1, 5)]
+        public int CougarQuarterLevel = 4;
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
             if (field.Name == nameof(active))

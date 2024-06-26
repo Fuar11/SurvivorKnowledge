@@ -15,19 +15,7 @@ namespace SurvivorKnowledge
         public static string getSkillByItem(GearItem item)
         {
 
-            if (item.name.StartsWith("GEAR_Rabbit"))
-                return "Mending";
-
-            if (item.name.StartsWith("GEAR_Deer"))
-                return "Mending";
-
-            if (item.name.StartsWith("GEAR_Moose"))
-                return "Mending";
-
-            if (item.name.StartsWith("GEAR_Wolf"))
-                return "Mending";
-
-            if (item.name.StartsWith("GEAR_Bear"))
+            if (item.name.StartsWith("GEAR_Rabbit") || item.name.StartsWith("GEAR_Deer") || item.name.StartsWith("GEAR_Moose") || item.name.StartsWith("GEAR_Wolf") || item.name.StartsWith("GEAR_Bear") || item.name.StartsWith("GEAR_Cougar") || item.name.StartsWith("GEAR_ImprovisedDownInsulation"))
                 return "Mending";
 
             if (item.name.ToLowerInvariant().Contains("lure")) return "Fishing";
@@ -47,6 +35,8 @@ namespace SurvivorKnowledge
                 case "GEAR_GunpowderCan":
                     return "Gunsmithing";
                 case "GEAR_RevolverAmmoSingle":
+                    return "Gunsmithing";
+                case "GEAR_RifleAmmoSingle":
                     return "Gunsmithing";
                 case "GEAR_OldMansBeardDressing":
                     return "Survival";
@@ -148,12 +138,14 @@ namespace SurvivorKnowledge
             if (name.StartsWith("GEAR_Bear"))
                 return settings.BearCraftLevel;
 
+            if (name.StartsWith("GEAR_Cougar"))
+                return settings.CougarCraftLevel;
+
             if (name.StartsWith("GEAR_HookAndLine")) return settings.SimpleFishingLevel;
 
             if (name.StartsWith("GEAR_FishingLure")) return settings.AdvancedFishingLevel;
 
             if (name.StartsWith("GEAR_TipUp")) return settings.TipUpLevel;
-
 
             return 0;
         }
@@ -180,6 +172,10 @@ namespace SurvivorKnowledge
                 else if (carcass.Contains("Moose"))
                 {
                     return Settings.settings.MooseLevel;
+                }
+                else if (carcass.Contains("Cougar"))
+                {
+                    return Settings.settings.CougarLevel;
                 }
                 else if (carcass.Contains("Rabbit") || carcass.Contains("Ptarmigan"))
                 {
@@ -208,6 +204,10 @@ namespace SurvivorKnowledge
                 else if (carcass.Contains("Moose"))
                 {
                     return Settings.settings.MooseQuarterLevel;
+                }
+                else if (carcass.Contains("Cougar"))
+                {
+                    return Settings.settings.CougarQuarterLevel;
                 }
                 else
                 {
