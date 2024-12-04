@@ -101,7 +101,7 @@ namespace SurvivorKnowledge
             string name = item.name;
             var settings = Settings.settings;
 
-            if (name.StartsWith("GEAR_Bow")) return settings.BowLevel;
+            if (name.Equals("GEAR_Bow")) return settings.BowLevel;
 
             if (name.StartsWith("GEAR_ArrowHardened")) return settings.FireArrowLevel;
 

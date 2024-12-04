@@ -10,11 +10,12 @@ using Il2Cpp;
 using Il2CppInterop.Runtime;
 using Il2CppTLD.Gear;
 
-namespace SurvivorKnowledge
+namespace SurvivorKnowledge.Patches
 {
     internal class Patches
     {
 
+        /**
         [HarmonyPatch(typeof(Panel_Crafting), nameof(Panel_Crafting.CanCraftSelectedBlueprint))]
 
         class PC_CanCraftBlueprint
@@ -26,7 +27,7 @@ namespace SurvivorKnowledge
 
                 if (__result == false) return;
 
-                GearItem item = __instance.SelectedBPI.m_CraftedResult;
+                GearItem item = __instance.SelectedBPI.m_CraftedResultGear;
 
                 //check for bow drill (modded)
                 if (item.name.ToLowerInvariant().Contains("drill")) return;
@@ -59,13 +60,13 @@ namespace SurvivorKnowledge
                 {
                     return;
                 }
-                if (!bpi.m_CraftedResult)
+                if (!bpi.m_CraftedResultGear)
                 {
                     return;
                 }
 
 
-                GearItem item = __instance.SelectedBPI.m_CraftedResult;
+                GearItem item = __instance.SelectedBPI.m_CraftedResultGear;
 
                 var skillLevel = KnowledgeHelper.getCurrentSkillLevel(item);
                 var requiredSkillLevel = KnowledgeHelper.getRequiredSkillLevel(item);
@@ -84,7 +85,7 @@ namespace SurvivorKnowledge
 
             }
 
-        }
+        } **/
 
         [HarmonyPatch(typeof(Panel_BodyHarvest), nameof(Panel_BodyHarvest.StartHarvest))]
 
@@ -102,7 +103,7 @@ namespace SurvivorKnowledge
                 var errorMessage = "Carcass Harvesting level " + skillLevelRequired + " required to harvest.";
 
 
-                if ((__instance.m_MenuItem_Hide.HarvestUnits > 0 || __instance.m_MenuItem_Gut.HarvestUnits > 0) || (__instance.m_MenuItem_Hide.HarvestUnits > 0 && __instance.m_MenuItem_Gut.HarvestUnits > 0))
+                if (__instance.m_MenuItem_Hide.HarvestUnits > 0 || __instance.m_MenuItem_Gut.HarvestUnits > 0 || __instance.m_MenuItem_Hide.HarvestUnits > 0 && __instance.m_MenuItem_Gut.HarvestUnits > 0)
                 {
 
                     if (skillLevel < skillLevelRequired)
@@ -138,16 +139,16 @@ namespace SurvivorKnowledge
 
                 var errorMessage = "Carcass Harvesting level " + skillLevelRequired + " required to quarter.";
 
-                    if (skillLevel < skillLevelRequired)
-                    {
+                if (skillLevel < skillLevelRequired)
+                {
                     __instance.DisplayErrorMessage(errorMessage);
-                        GameAudioManager.PlayGUIError();
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                    GameAudioManager.PlayGUIError();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -164,7 +165,7 @@ namespace SurvivorKnowledge
                     KnowledgeHelper.AddMendingXP(xp);
                 }
             }
-        }   
+        }
 
 
     }
