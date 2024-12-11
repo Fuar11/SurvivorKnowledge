@@ -17,5 +17,5 @@ internal static class BuildInfo
 {
 	internal const string ModName = "SurvivorKnowledge";
 	internal const string ModAuthor = "Fuar";
-	internal const string ModVersion = "1.3.0";
+	internal const string ModVersion = "1.3.1";
 }

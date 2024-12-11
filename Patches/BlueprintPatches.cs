@@ -19,28 +19,37 @@ namespace SurvivorKnowledge.Patches
             public static void Postfix(ref Il2CppSystem.Collections.Generic.List<BlueprintData> __result, BlueprintManager __instance)
             {
 
-                //i probably don't even need to call this
                 __instance.LoadAddressableBlueprints();
 
-                var tempList = __instance.m_AddressableBlueprints;
+                var blueprints = __instance.m_AddressableBlueprints;
+                var moddedBlueprints = __instance.m_AllBlueprints;
 
-                for (int i = tempList.Count - 1; i >= 0; i--)
+                //ensures modded items always remain
+                foreach (BlueprintData item in moddedBlueprints)
+                {
+                    if (!blueprints.Contains(item))
+                    {
+                        blueprints.Add(item);
+                    }
+                }
+
+                for (int i = blueprints.Count - 1; i >= 0; i--)
                 {
 
-                    if (tempList[i].m_CraftingResultType == CraftingResult.Decoration) continue;
+                    if (blueprints[i].m_CraftingResultType == CraftingResult.Decoration) continue;
 
-                    GearItem item = tempList[i].m_CraftedResultGear;
+                    GearItem item = blueprints[i].m_CraftedResultGear;
 
                     var skillLevel = KnowledgeHelper.getCurrentSkillLevel(item);
                     var requiredSkillLevel = KnowledgeHelper.getRequiredSkillLevel(item);
 
                     if (skillLevel < requiredSkillLevel)
                     {
-                        tempList.RemoveAt(i);
+                        blueprints.RemoveAt(i);
                     }
                 }
 
-                __result = tempList;
+                __result = blueprints;
             }
 
 
