@@ -12,6 +12,8 @@ It aims to simulate survivor knowledge by putting restraints on a couple of game
   - Natural healing items
   - Animal hide clothing items
   - Etc
+
+When you level up in the respective skill the crafting recipes will become available.
   
 * Carcass Harvesting and Quartering now tied to Carcass Harvesting skill. Varies depending on the animal.
 * Crafting cloth items grants Mending XP
